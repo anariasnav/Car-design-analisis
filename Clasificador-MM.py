@@ -30,7 +30,7 @@ BATCH_SIZE = 64
 LEARNING_RATE = 0.0005
 
 # Directorio que contiene la base de datos sobre la que vamos a realizar el entrenamiento
-MAIN_DIR ="./BD-461/Especificidad MMV/"
+MAIN_DIR ="./BD-461/Especificidad MM/"
 
 # Numero de clases a diferenciar en el clasificador
 CLASES = 193
