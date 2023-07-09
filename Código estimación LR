@@ -1,0 +1,37 @@
+model.train()  # Establece el modo de entrenamiento
+
+lrs = []
+losses = []
+
+for lr in range(-12, 0):
+    optimizer.param_groups[0]['lr'] = 5**lr  # Establece una tasa de aprendizaje
+
+    # Ejecuta un paso de entrenamiento con una mini-batch de datos
+    inputs, labels = next(iter(train_dataloader))  # Obtén los datos de entrenamiento
+    optimizer.zero_grad()  # Reinicia los gradientes acumulados
+    outputs = model(inputs)  # Obtiene las salidas del modelo
+    loss = loss_fn(outputs, labels)  # Calcula la pérdida
+    loss.backward()  # Retropropagación del error
+    optimizer.step()  # Actualiza los pesos del modelo
+
+    # Registra la tasa de aprendizaje y la pérdida
+    lrs.append(5**lr)
+    losses.append(loss.item())
+    
+print(lrs)
+print(losses)
+
+def plot_loss_vs_lr(labels, loss):
+    # Convierte los arrays de etiquetas y pérdida a listas
+    labels = list(labels)
+    loss = list(loss)
+
+    # Plotea la pérdida en función de la tasa de aprendizaje
+    plt.plot(labels, loss)
+    plt.xlabel('Learning Rate')
+    plt.ylabel('Cross entropy loss')
+    plt.title('Loss vs. Learning Rate')
+    plt.xscale('log')  # Escala logarítmica en el eje x (tasa de aprendizaje)
+    plt.show()
+
+plot_loss_vs_lr(lrs,losses)

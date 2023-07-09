@@ -1,10 +1,24 @@
+"""
+Denoising.py
+=================
+
+Script para reducir el ruido de las imágenes generadas de forma automática con la GAN.
+
+Parámetros: 
+    - inDir: Representa el directorio del que se leenlas imágenes a limpiar
+    -out:   Directorio donde se almacenan las imágenes sin ruido. Su formato ha de ser ./nombre/
+
+Autor: Andrés Arias Navarro
+Fecha: 31/05/2023
+"""
+
 import os
 import shutil
 import errno
 import cv2
 import argparse
 
-parser = argparse.ArgumentParser(description='manual to this script')
+parser = argparse.ArgumentParser(description='Script para reducir el ruido de las imágenes generadas de forma automática con la GAN.')
 parser.add_argument('--inDir', type=str, default = None)
 parser.add_argument('--out', type=str, default='./Denoised Images/')
 args = parser.parse_args()

@@ -1,7 +1,18 @@
+"""
+modCarpetas.py
+=================
+
+Script para la reestructuración de la base de datos cambiando su especificidad y conjuntos.
+
+Autor: Andrés Arias Navarro
+Fecha: 22/05/2023
+"""
+
 import os
 import shutil
 import errno
 
+# Especificidad Marca
 root = os.path.join('./BD-461/Especificidad MMA/test','')
 for directory, subdir_list, file_list in os.walk(root):
     print('Directory:', directory)
@@ -9,7 +20,9 @@ for directory, subdir_list, file_list in os.walk(root):
     dir2 = directory.replace('./BD-461/Especificidad MMA/test','./BD-461/Especificidad M/val')
     posicion = dir.find('_')
     posicion2 = dir2.find('_')
-    #posicion = dir.find('_',posicion+1)
+    ## Se añade para marca y modelo
+    # posicion = dir.find('_',posicion+1)
+    # posicion2 = dir2.find('_',posicion2+1)
     nueva = dir[:posicion]
     nueva_val = dir2[:posicion2]
     try:
