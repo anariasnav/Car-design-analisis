@@ -2,3 +2,4 @@ pytorch
 shap
 opencv-python
 lime
+numpy

@@ -28,16 +28,16 @@ IMG_SIZE = 256
 TEMPLATE_SIZE = 256
 
 # Se establece el número de épocas
-EPOCHS = 200
+EPOCHS = 1000
 
 # Se establece el tamaño de batch
-BATCH_SIZE = 64
+BATCH_SIZE = 32
 
 # Se establece el learning rate inicial
 LEARNING_RATE = 0.0005
 
 # Directorio que contiene la base de datos sobre la que vamos a realizar el entrenamiento
-MAIN_DIR ="./BD-461/"
+MAIN_DIR ="./BD-461/Todos/"
 
 lr = 0.0002
 
@@ -53,6 +53,7 @@ channels=3
 sample_interval=400
 # Numero de clases a diferenciar en el clasificador
 CLASES = 34
+
 cuda = True if torch.cuda.is_available() else False
 device = torch.device("cuda:0" if (torch.cuda.is_available()) else "cpu")
 

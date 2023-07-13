@@ -87,22 +87,63 @@ torch.hub._validate_not_a_forked_repo=lambda a,b,c: True
 # RESNET 50
 #model = torch.hub.load('NVIDIA/DeepLearningExamples:torchhub', 'nvidia_resnet50', pretrained=True)
 #model.fc = nn.Linear(model.fc.in_features, CLASES)
-# Creamos una nueva cabeza para el modelo
-#head = nn.Sequential(
-#    nn.Linear(model.fc.in_features, model.fc.in_features//2),
-#    nn.ReLU(),
-#    nn.Linear(model.fc.in_features//2, CLASES)
-#)
-#model.fc = head
+
 
 # DENSENET 121
 model = torch.hub.load('pytorch/vision:v0.10.0', 'densenet121', pretrained=True)
 model.classifier = nn.Linear(model.classifier.in_features,CLASES)
 
+# Creamos una nueva cabeza para el modelo
+#head = nn.Sequential(
+#    nn.Linear(model.classifier.in_features, model.classifier.in_features//2),
+#    nn.ReLU(),
+#    nn.Linear(model.classifier.in_features//2, CLASES)
+#)
+#model.classifier = head
+
 model.eval() # esto se ha quitado sin probar
 optimizer = torch.optim.SGD(model.parameters(), lr=1e-2)  #  <3>
 loss_fn = nn.CrossEntropyLoss()  #  <4>
 
+## Código para la estimación de hiperparámetros como Learning Rate
+## se realiza la experimentación con diferentes valores de learning rate para la estimación de el valor óptimo
+#model.train()  # Establece el modo de entrenamiento
+#
+#lrs = []
+#losses = []
+#
+#for lr in range(-12, 0):
+#    optimizer.param_groups[0]['lr'] = 5**lr  # Establece una tasa de aprendizaje
+#
+#    # Ejecuta un paso de entrenamiento con una mini-batch de datos
+#    inputs, labels = next(iter(train_dataloader))  # Obtén los datos de entrenamiento
+#    optimizer.zero_grad()  # Reinicia los gradientes acumulados
+#    outputs = model(inputs)  # Obtiene las salidas del modelo
+#    loss = loss_fn(outputs, labels)  # Calcula la pérdida
+#    loss.backward()  # Retropropagación del error
+#    optimizer.step()  # Actualiza los pesos del modelo
+#
+#    # Registra la tasa de aprendizaje y la pérdida
+#    lrs.append(5**lr)
+#    losses.append(loss.item())
+#    
+#print(lrs)
+#print(losses)
+#
+#def plot_loss_vs_lr(labels, loss):
+#    # Convierte los arrays de etiquetas y pérdida a listas
+#    labels = list(labels)
+#    loss = list(loss)
+#
+#    # Plotea la pérdida en función de la tasa de aprendizaje
+#    plt.plot(labels, loss)
+#    plt.xlabel('Learning Rate')
+#    plt.ylabel('Cross entropy loss')
+#    plt.title('Loss vs. Learning Rate')
+#    plt.xscale('log')  # Escala logarítmica en el eje x (tasa de aprendizaje)
+#    plt.show()
+#
+#plot_loss_vs_lr(lrs,losses)
 
 def validate(model, train_dataloader, val_dataloader, device):
     for name, loader in [("train", train_dataloader), ("val", val_dataloader)]:
@@ -176,7 +217,7 @@ model_path = "./models/"
 if not os.path.exists(model_path):
     os.mkdir(model_path)
 
-torch.save(model_trained.state_dict(), model_path + 'MMA.pt')
+torch.save(model_trained.state_dict(), model_path + 'densenet.pt')
 
 model
 
@@ -197,7 +238,7 @@ modelo = torch.hub.load('pytorch/vision:v0.10.0', 'densenet121', pretrained=True
 modelo.classifier = nn.Linear(modelo.classifier.in_features,CLASES)
 # Creamos una nueva cabeza para el modelo
 
-pesos = torch.load('./models/MMA.pt',map_location='cuda')
+pesos = torch.load('./models/densenet.pt',map_location='cuda')
 #pesos = torch.load('./models/resnet50.pt',map_location='cuda')
 modelo.load_state_dict(pesos)
 modelo.to(device)
@@ -261,6 +302,7 @@ print(classification_report(true_labels, predicted_labels))
 subset_images = torch.stack(subset_images)
 subset_labels_true = np.array(subset_labels_true)
 subset_labels_pred = np.array(subset_labels_pred)
+
 # Mostrar las imágenes junto con las etiquetas reales y predichas
 fig, axs = plt.subplots(5, 2, figsize=(24, 12))
 
