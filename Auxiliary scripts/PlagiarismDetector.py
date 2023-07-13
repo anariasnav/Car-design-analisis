@@ -42,7 +42,7 @@ IMG_SIZE = (256, 256)
 BATCH_SIZE = 256
 
 # Directorio que contiene la base de datos sobre la que vamos a realizar el entrenamiento
-MAIN_DIR ="./BD-461/Especificidad M/"
+MAIN_DIR ="../BD-461/Especificidad M/"
 
 # Numero de clases a diferenciar en el clasificador
 CLASES = 34
@@ -68,7 +68,7 @@ ETIQUETAS = test_dataset.classes
 # Cargamos el modelo de clasificación entrenado
 modelo = torch.hub.load('pytorch/vision:v0.10.0', 'densenet121', pretrained=True)
 modelo.classifier = nn.Linear(modelo.classifier.in_features, CLASES)
-pesos = torch.load("./models/DenseNetM.pt", map_location='cuda')
+pesos = torch.load("../models/DenseNetM.pt", map_location='cuda')
 modelo.load_state_dict(pesos)
 modelo.to(device)
 modelo.eval()

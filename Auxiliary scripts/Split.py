@@ -21,7 +21,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Script para la división de las cuadrículas de imágenes generadas de forma automática con la GAN a imágenes inviduales.')
 parser.add_argument('--inDir', type=str, default = None)
-parser.add_argument('--out', type=str, default='./Split Images/')
+parser.add_argument('--out', type=str, default='../Split Images/')
 args = parser.parse_args()
 In =  args.inDir
 Out = args.out

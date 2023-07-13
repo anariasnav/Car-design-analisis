@@ -19,7 +19,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Script para reducir el ruido de las imágenes generadas de forma automática con la GAN.')
 parser.add_argument('--inDir', type=str, default = None)
-parser.add_argument('--out', type=str, default='./Denoised Images/')
+parser.add_argument('--out', type=str, default='../Denoised Images/')
 args = parser.parse_args()
 DIR_in =  args.inDir
 DIR = args.out
