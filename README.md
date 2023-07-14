@@ -34,7 +34,7 @@ Contiene la base de datos utilizada para el entrenamiento de los distintos model
 __Aviso__: La base de datos está disponible de forma temporal para la evaluación de este TFG.
 
 ### Models.zip
-Contiene los pesos de los distintos modelos entrenados durante el desarrollo del presente proyecto. Dichos pesos se almacenan en un archivo formato `.pd` que nos permitirán cargar las redes entrenadas para posteriores testeos o aplicaciones de las mismas sin que se tengan que volver a entrenar. Para realizar pruebas con los modelos ya entrenados será necesario descomprimirlo.
+Contiene los pesos de los distintos modelos entrenados durante el desarrollo del presente proyecto. Dichos pesos se almacenan en un archivo formato `.pd` que nos permitirán cargar las redes entrenadas para posteriores testeos o aplicaciones de las mismas sin que se tengan que volver a entrenar. Debido al elevado tamaño de los modelos almacenados no se almacena en GitHub pero pueden descargarse en el siguiente enlace: [https://drive.google.com/file/d/1lOFsEJcboSXecwK-m1VVGVLEdcvu1Uo5/view?usp=sharing](https://drive.google.com/file/d/1lOFsEJcboSXecwK-m1VVGVLEdcvu1Uo5/view?usp=sharing) . Para realizar pruebas con los modelos ya entrenados será necesario descomprimirlo.
 
 ### Generated images
 Contiene las imágenes generadas por las distintas arquitecturas evaluadas GAN y Stylegan.
