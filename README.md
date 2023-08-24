@@ -23,14 +23,6 @@ Directorio que contiene los scripts auxiliares implementados durante el desarrol
 * _'Split'_ - Divide las cuadrículas de imágenes generadas por la GAN en imágenes individuales.
 * _'PlagiarismDetector'_ - Script para la obtención de información de similitud entre múltiples marcas haciendo uso del clasificador de marca entrenado.
 
-### BD-461
-Contiene la base de datos utilizada para el entrenamiento de los distintos modelos. Dicha base de dato s a sido separada en función del nivel de especificidad de la misma según se centra en Marca, Marca-Modelo o Marca-Modelo-Año. Su estructura interna se divide en 4 carpetas:
-
-* Especificidad M - Contiene la base de datos para especificidad Marca.
-* Especificidad MM -Contiene la base de datos para especificidad Marca-Modelo.
-* Especificidad MMA - Contiene la base de datos para especificidad Marca-Modelo-Año
-* Todos - Dividida por marcas sin distintión entre train, test y validación
-
 __Aviso__: La base de datos está disponible de forma temporal para la evaluación de este TFG.
 
 ### Models.zip
